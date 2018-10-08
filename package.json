@@ -1,0 +1,25 @@
+{
+  "name": "Kangaroo_MakersAirBnb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NadiaAiraf/Kangaroo_MakersAirBnb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NadiaAiraf/Kangaroo_MakersAirBnb/issues"
+  },
+  "homepage": "https://github.com/NadiaAiraf/Kangaroo_MakersAirBnb#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.6"
+  }
+}
