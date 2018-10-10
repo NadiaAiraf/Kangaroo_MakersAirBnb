@@ -1,29 +1,25 @@
 const express = require('express');
-const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
-const mongodb = require('mongodb');
+const MongoClient = require('mongodb').MongoClient
+const path = require('path');
+var db
 
-var bodyParser = require('body-parser');
-
-var dbConn = mongodb.MongoClient.connect('mongodb://localhost:27017/userlogindb');
-
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.resolve(__dirname, 'public')));
 
-app.post('/post-feedback', function (req, res) {
-    dbConn.then(function(db) {
-        // delete req.body._id; // for safety reasons
-        db.collection('feedbacks').insertOne(req.body);
-    });
-    res.send('Data received:\n' + JSON.stringify(req.body));
-});
+MongoClient.connect('mongodb://localhost:27017/', { useNewUrlParser: true }, (err, client) => {
+  if (err) return console.log(err)
+  db = client.db('userlogindb')
+  app.listen(3000, () => {
+    console.log('listening on 3000')
+  })
+})
 
-app.get('/view-database', function(req, res) {
-  dbConn.then(function(db) {
-    db.collection('feedbacks').find({}).toArray().then(function(feedbacks) {
-      res.status(200).json(feedbacks);
-    });
-  });
-});
-
-app.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0' );
+app.post('/register', (req, res) => {
+  db.collection('userlogindb').save(req.body, (err, result) => {
+    if (err) return console.log(err)
+    console.log('Saved to database')
+    res.redirect('/')
+  })
+})

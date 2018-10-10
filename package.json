@@ -2,7 +2,10 @@
   "name": "Kangaroo_MakersAirBnb",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,8 +22,9 @@
   "homepage": "https://github.com/NadiaAiraf/Kangaroo_MakersAirBnb#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "mongodb": "^3.1.6",
+    "mongodb": "^3.1.7",
     "mongoose": "^5.3.2"
   }
 }
