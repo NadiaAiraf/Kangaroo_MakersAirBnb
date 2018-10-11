@@ -14,6 +14,8 @@ describe('User visits the add spaces page', function() {
       browser.assert.text('h1', 'Add your space details')
     });
 
-    
+
   });
 });
+
+//

@@ -9,3 +9,5 @@ describe ("Validation", function() {
     expect(validate.authenticateUser('makers', 'password')).toEqual(true)
   });
 });
+
+//
