@@ -18,6 +18,11 @@ app.get('/spaces', function(req, res) {
   })
 })
 
+app.post('/spaces', function(req, res) {
+  Spaces.create(req.body)
+  res.redirect('/spaces')
+})
+
 app.get('/addspace', function(req, res) {
   res.render('addspace')
 })
