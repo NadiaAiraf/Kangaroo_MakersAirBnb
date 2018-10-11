@@ -14,9 +14,12 @@ mongoose.connect(MongoDB);
 
 app.get('/spaces', function(req, res) {
   Spaces.find({}, function(err, docs) {
-    console.log(docs);
     res.render('spaces', {spaces: docs})
   })
+})
+
+app.get('/addspace', function(req, res) {
+  res.render('addspace')
 })
 
 app.post('/register', (req, res) => {
