@@ -1,18 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const MongoClient = require('mongodb').MongoClient
 const path = require('path');
+const Spaces = require('./src/spaceSchema')
+var mongoose = require('mongoose');
+var MongoDB = 'mongodb://localhost:27017'
 var db
-
+app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.get('/', (req,res) => res.render('index'))
 
-MongoClient.connect('mongodb://localhost:27017/', { useNewUrlParser: true }, (err, client) => {
-  if (err) return console.log(err)
-  db = client.db('userlogindb')
-  app.listen(3000, () => {
-    console.log('listening on 3000')
+mongoose.connect(MongoDB);
+
+app.get('/spaces', function(req, res) {
+  Spaces.find({}, function(err, docs) {
+    console.log(docs);
+    res.render('spaces', {spaces: docs})
   })
 })
 
@@ -23,3 +26,5 @@ app.post('/register', (req, res) => {
     res.redirect('/')
   })
 })
+
+app.listen(3000, () => console.log(`Listening on port 3000`))
